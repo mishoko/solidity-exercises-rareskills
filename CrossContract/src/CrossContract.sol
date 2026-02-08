@@ -1,16 +1,19 @@
 // SPDX-License-Identifier: BUSL-1.1
 pragma solidity ^0.8.13;
 
+interface IOracle {
+    function price() external view returns (uint256);
+}
+
 contract CrossContract {
     /**
      * The function below is to call the price function of PriceOracle1 and PriceOracle2 contracts below and return the lower of the two prices
      */
-
-    function getLowerPrice(
-        address _priceOracle1,
-        address _priceOracle2
-    ) external view returns (uint256) {
+    function getLowerPrice(address _priceOracle1, address _priceOracle2) external view returns (uint256) {
         // your code here
+        return IOracle(_priceOracle1).price() > IOracle(_priceOracle2).price()
+            ? IOracle(_priceOracle1).price()
+            : IOracle(_priceOracle2).price();
     }
 }
 

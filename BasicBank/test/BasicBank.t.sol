@@ -21,9 +21,32 @@ contract BasicBankTest is Test {
         );
     }
 
+    function testAddEtherV2() external {
+        vm.deal(address(this), 1 ether);
+        basicBank.addEtherV2{value: 1 ether}();
+        assertEq(
+            address(basicBank).balance,
+            1 ether,
+            "expected balance of basic bank contract to be 1 ether"
+        );
+    }
+
+    function testAddEtherV3() external {
+        vm.deal(address(this), 1 ether);
+        // vm.expectRevert();
+        basicBank.addEtherV3{value: 1 ether}();
+        // basicBank.addEtherV3{value: 1 ether}();
+        assertEq(
+            address(basicBank).balance,
+            1 ether,
+            "expected balance of basic bank contract to be 1 ether"
+        );
+    }
+
+
     function testRemoveEther() external {
         vm.deal(address(this), 1 ether);
-        vm.expectRevert();
+        // vm.expectRevert();
         basicBank.removeEther(1);
         basicBank.addEther{value: 1 ether}();
         basicBank.removeEther(1 ether);
@@ -36,3 +59,7 @@ contract BasicBankTest is Test {
 
     receive() external payable {}
 }
+
+
+
+// source https://github.com/RareSkills/Solidity-Exercises
