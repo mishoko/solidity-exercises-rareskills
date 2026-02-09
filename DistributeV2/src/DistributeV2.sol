@@ -7,13 +7,20 @@ contract DistributeV2 {
         1. This contract has some ether in it, distribute it equally among the
            array of addresses that is passed as argument.
         2. Write your code in the `distributeEther` function.
-        3. Consider scenarios where one of the recipients rejects the ether transfer, 
+        3. Consider scenarios where one of the recipients rejects the ether transfer,
            have a work around for that whereby other recipients still get their transfer
     */
 
     constructor() payable {}
 
     function distributeEther(address[] memory addresses) public {
-        // your code here
+        // your code here        
+        uint256 num = address(this).balance / addresses.length;
+        for (uint256 i; i < addresses.length; i++) {
+            (bool ok,) = addresses[i].call{value: num}("");
+            if (ok ==false) {
+                continue;
+            }
+        }
     }
 }
