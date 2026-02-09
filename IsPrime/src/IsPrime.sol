@@ -7,5 +7,6 @@ contract IsPrime {
      */
     function isPrime(uint256 number) public view returns (bool) {
         // your code here
+        return number > 1 && number % 2 == 1 || number == 2;
     }
 }

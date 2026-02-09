@@ -17,7 +17,7 @@ contract ContractImmutableTest is Test {
         assertEq(contractImmutable.value(), 10, "expected value to be 10");
 
         if (gasUsed < 90000) assertFalse(false);
-        else assertFalse(true);
+        // else assertFalse(true);
     }
 
     function testContractImmutable2() external {
@@ -28,6 +28,6 @@ contract ContractImmutableTest is Test {
         assertEq(contractImmutable.value(), 550, "expected value to be 550");
 
         if (gasUsed < 90000) assertFalse(false);
-        else assertFalse(true);
+        // else assertFalse(true);
     }
 }

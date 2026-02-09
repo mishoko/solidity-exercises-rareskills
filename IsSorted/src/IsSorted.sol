@@ -5,7 +5,15 @@ contract IsSorted {
     /**
      * The goal of this exercise is to return true if the members of "arr" is sorted (in ascending order) or false if its not.
      */
-    function isSorted(uint256[] calldata arr) public view returns (bool) {
+    function isSorted(uint256[] calldata arr) public pure returns (bool) {
         // your code here
+        uint256 arrLength = arr.length;
+        if (arr.length == 0) return true;
+        for (uint256 i = 0; i < arrLength - 1; i++) {
+            if (arr[i] > arr[i + 1]) {
+                return false;
+            }
+        }
+        return true;
     }
 }
