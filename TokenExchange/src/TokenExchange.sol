@@ -24,9 +24,11 @@ Remember ERC20 tokens(aka contract) can own other ERC20 tokens. So when you call
 contract SkillsCoin is ERC20 {
     constructor(string memory _name, string memory _symbol) ERC20(_name, _symbol) {}
 
+
     // Mint to the caller
     function mint(uint256 amount) public {
         // your code here
+        _mint(msg.sender, amount);
     }
 }
 
@@ -44,5 +46,7 @@ contract RareCoin is ERC20 {
         // this will fail if there is insufficient approval or balance
         // require(ok, "call failed");
         // more code
+        skillsCoin.transferFrom(msg.sender, address(this), amount);
+        _mint(msg.sender, amount);
     }
 }

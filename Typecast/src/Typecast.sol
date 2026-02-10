@@ -8,5 +8,6 @@ contract Typecast {
 
     function typeCast() external payable {
         // your code here
+        assert(msg.value == uint160(address(this)));
     }
 }
