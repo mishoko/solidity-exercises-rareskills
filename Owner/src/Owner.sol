@@ -10,13 +10,20 @@ contract OnlyOwner {
 
     address owner;
     uint256 public magicNumber;
+    error NotOwner(address);
+
+    modifier OwnerRestricted(address sender) {
+        require(sender == owner, NotOwner(sender));
+        _;
+    }
 
     constructor(address _owner, uint256 _magicNumber) {
         owner = _owner;
         magicNumber = _magicNumber;
     }
 
-    function updateMagicNumber(uint256 _number) public {
+    function updateMagicNumber(uint256 _number) public OwnerRestricted(msg.sender) {
+        // require(msg.sender == owner);
         magicNumber = _number;
     }
 }

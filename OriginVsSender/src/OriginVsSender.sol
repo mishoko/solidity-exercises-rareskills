@@ -12,10 +12,15 @@ contract OriginVsSender {
      * the function "setNumber(uint256)" is an EOA using tx.origin and msg.sender keywords
      *
      */
+    error NotAPureEOA();
 
     uint256 public number;
 
     function setNumber(uint256 num) external {
         /// your code here
+        require(msg.sender == tx.origin, NotAPureEOA());
+        // uint256 contractLength = msg.sender.code.length;
+        // require(contractLength == 0);
+        number = num;
     }
 }

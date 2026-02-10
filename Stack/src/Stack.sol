@@ -22,4 +22,25 @@ contract Stack {
     }
 
     // your code here
+    function push(uint256 item) public {
+        stack.push(item);
+    }
+
+    function peek() public view returns(uint256) {
+        return stack[stack.length -1];
+    }
+
+    function pop() public returns(uint256) {
+        uint256 elementToPop = stack[stack.length -1];
+        stack.pop();
+        return elementToPop;
+    }
+
+    function size() public view returns(uint256) {
+        return stack.length;
+    }
+
+    function getStack() public view returns(uint256[] memory) {
+        return stack;
+    }
 }
